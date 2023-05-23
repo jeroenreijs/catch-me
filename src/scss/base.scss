@@ -1,0 +1,95 @@
+@import 'vars';
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -webkit-touch-callout: none !important;
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none;
+  user-select: none;
+  font-family: monospace, sans-serif;
+  touch-action: manipulation;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: monospace, sans-serif;
+}
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: display 0s linear 300ms, opacity 300ms;
+}
+.show {
+  display: block;
+  opacity: 1;
+  transition: display 0s linear 0s, opacity 300ms;
+}
+.container {
+  margin: 10vh auto 1vh;
+  max-width: 70vw;
+  height: 40vh;
+  perspective: 10px;
+  /* this could work for responsiveness */
+  /* perspective: calc(720px + (100vw - 320px) * 7); */
+  perspective-origin: top;
+}
+button {
+  background-color: $red;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  font-size: 1.5rem;
+  text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.1875rem;
+    right: 0.1875rem;
+    bottom: 0.1875rem;
+    border-radius: 0.4375rem;
+    border-top: 0.0625rem solid $redmiddle;
+    border-left: 0.0625rem solid $redmiddle;
+    border-right: 0.0625rem solid $redmiddle;
+    border-bottom: 0.125rem solid $redmiddle;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $redmiddle;
+
+    &::before {
+      border-color: $reddark;
+    }
+  }
+  &.button-start,
+  &.button-uitleg {
+    position: absolute;
+    bottom: 2%;
+    right: 10%;
+  }
+
+  &.blue {
+    background-color: $blue;
+
+    &::before {
+      border-color: $bluemiddle;
+    }
+
+    &:focus {
+      background-color: $bluemiddle;
+
+      &::before {
+        border-color: $bluedark;
+      }
+    }
+  }
+}

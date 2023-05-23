@@ -1,0 +1,218 @@
+@import 'vars';
+
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-5%) translateX(-5%);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animateOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-5%) translateX(-5%);
+  }
+}
+
+.splitscreen {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  ul {
+    --square-size: 10%;
+    --gutter: 2px;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template: repeat(var(--square-count), 1fr) / repeat(
+        var(--square-count),
+        1fr
+      );
+    grid-column-gap: var(--gutter);
+    grid-row-gap: var(--gutter);
+    width: calc(100% + calc(var(--square-count) - 10) * var(--gutter));
+    height: calc(100% + calc(var(--square-count) - 10) * var(--gutter));
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      z-index: 1;
+      transform: rotate(30deg);
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    li {
+      display: block;
+      height: calc(100% - var(--gutter));
+      width: calc(100% - var(--gutter));
+      background-color: $red;
+      animation-name: animateIn;
+      animation-duration: 250ms;
+      animation-delay: calc(var(--animation-order) * 20ms);
+      animation-fill-mode: both;
+      animation-timing-function: ease-in-out;
+
+      &.alt {
+        background-color: $blue;
+      }
+    }
+  }
+
+  &.animate-out {
+    ul li {
+      animation-name: animateOut;
+    }
+  }
+
+  .label {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 85%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    line-height: 0.9;
+    text-shadow: 0.125rem 0.125rem 0.75rem $red;
+    color: $blue;
+
+    .subtitle {
+      font-size: 2.5rem;
+    }
+  }
+
+  .winning-player {
+    position: absolute;
+    left: 36%;
+    top: 56%;
+    width: 85%;
+    height: 20%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+
+    &.type-player {
+      background-image: url(../assets/good_guy.svg);
+      &.good-girl {
+        background-image: url(../assets/good_girl.svg);
+      }
+    }
+    &.type-enemy {
+      background-image: url(../assets/bad_guy.svg);
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 67%;
+      width: 50%;
+      height: 100%;
+      background-image: url(../assets/trophy.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+  }
+
+  .scores {
+    position: absolute;
+    left: 50%;
+    top: 73%;
+    width: 85%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-shadow: 0.125rem 0.125rem 0.75rem $blue;
+    color: $red;
+  }
+
+  .buttons {
+    position: absolute;
+    display: flex;
+    bottom: 2%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    padding: 0 10%;
+    justify-content: space-between;
+  }
+
+  &.yellow-green {
+    ul {
+      li {
+        background-color: $yellow;
+        &.alt {
+          background-color: $green;
+        }
+      }
+    }
+    .label {
+      text-shadow: 0.125rem 0.125rem 0.75rem $yellow;
+      color: $green;
+    }
+    .scores {
+      text-shadow: 0.125rem 0.125rem 0.75rem $green;
+      color: $yellow;
+    }
+  }
+  &.blue-orange {
+    ul {
+      li {
+        background-color: $blue;
+        &.alt {
+          background-color: $orange;
+        }
+      }
+    }
+    .label {
+      text-shadow: 0.125rem 0.125rem 0.75rem $blue;
+      color: $orange;
+    }
+    .scores {
+      text-shadow: 0.125rem 0.125rem 0.75rem $orange;
+      color: $blue;
+    }
+  }
+  &.yellow-red {
+    ul {
+      li {
+        background-color: $yellow;
+        &.alt {
+          background-color: $red;
+        }
+      }
+    }
+    .label {
+      text-shadow: 0.125rem 0.125rem 0.75rem $yellow;
+      color: $red;
+    }
+    .scores {
+      text-shadow: 0.125rem 0.125rem 0.75rem $red;
+      color: $yellow;
+    }
+  }
+}
