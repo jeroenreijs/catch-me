@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Catch me!</title>
+  </head>
+  <body>
+    <div class="home pattern show">
+      <div class="content step1">
+        <div class="borders">
+          <div class="text">
+            <p>Catch me!</p>
+          </div>
+        </div>
+        <button class="button-uitleg">Start</button>
+      </div>
+      <div class="content step2 hidden">
+        <div class="borders">
+          <div class="text">
+            <p>Info</p>
+          </div>
+          <div class="info">
+            <div class="you-and-me">
+              You:
+              <input
+                type="radio"
+                name="playerSexe"
+                class="player-selector good-guy"
+                checked
+                value="0"
+              />
+              or
+              <input
+                type="radio"
+                name="playerSexe"
+                class="player-selector good-girl"
+                value="1"
+              /><br />
+              Me:
+              <span class="player-selector bad-guy checked"></span>
+              <!-- You: &#x1f600;<br />
+            Me: &#x1f608;<br /> -->
+            </div>
+            Swipe to move!<br /><br />
+            Now, try to get to the finish before me!
+          </div>
+        </div>
+        <button class="button-start">Play</button>
+      </div>
+    </div>
+    <div class="container hidden"></div>
+    <script src="main.js"></script>
+  </body>
+</html>
